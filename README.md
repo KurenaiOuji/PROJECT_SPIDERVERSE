@@ -21,6 +21,15 @@
         |Tendremos que copiar el **URL** en el primer recuadro|<img src="Imagenes_MD/Paste_URL.png" alt="Web" width="350" height="auto">|
         |La segunda opcion es para elegir en que parte de nuestra computadora guardaremos el proyecto|Le daremos *Click* a **Clone** para descargar el repositorio|
 
+- **Cambiar de Rama**
+
+
+    |Rama Artista||
+    |-|-|
+    |Para cambiarnos de **Rama ("Branch")**, ubicaremos el boton que se encuentra en la parte de arriba de GitHub Deskop con el mismo nombre.|<img src="Imagenes_MD/Selección_Rama.png" alt="File-Clone" width="500" height="auto">|
+    |Al darle Click al boton nos saldra un nuevo menu en el cual encontraremos todas kas Ramas (Branch) que tiene nuestro proyecto.|<img src="Imagenes_MD/Select_Branch.png" alt="File-Clone" width="500" height="auto">|
+
+
 
 - **Subir archivos**
 
