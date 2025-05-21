@@ -6,16 +6,29 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private Transform PlayerCamera;
     private CharacterController _controller;
-    [SerializeField] private Transform _camera;
 
+    [Space(5)]
     [Header("Movement Settings")]
-    [SerializeField] private float _speed = 5f;
-    [SerializeField] private float _turningSpeed = 2f;
+    [SerializeField] private float Speed = 5f;
+    [SerializeField] private float TurningSpeed = 2f;
+    [SerializeField] private float Gravity = 9.81f;
 
+    private float _verticalVelocity;
+
+    [Space(5)]
+    [Header("Camera Settings")]
+    [Tooltip("Camera movement speed")]
+    [SerializeField] private Vector2 Sensitivity;
+    [Tooltip("Max range the camera can rotate")]
+    [SerializeField] private float Degree = 90f;
+    private Vector2 XYRotation;
+
+    [Space(5)]
     [Header("Inputs")]
-    private float _horizontalInput;
-    private float _verticalInput;
+    private float HorizontalInput;
+    private float VerticalInput;
 
     private void Start()
     {
@@ -31,34 +44,55 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         GroundMovement();
-        Turn();
+        CameraRotation();
     }
 
     private void GroundMovement()
     {
-        Vector3 move = new Vector3 (_horizontalInput, -9.81f, _verticalInput);
+        Vector3 move = new Vector3 (HorizontalInput, 0, VerticalInput);
         move = transform.TransformDirection(move);
 
-        move *= _speed;
+        move *= Speed;
+
+        move.y = ApplyGravity();
 
         _controller.Move(move * Time.deltaTime);
     }
 
-    private void Turn()
+    private float ApplyGravity()
     {
-        if (Mathf.Abs(_horizontalInput) > 0 || Mathf.Abs(_verticalInput) > 0)
+        if (_controller.isGrounded)
         {
-            Vector3 currentLookDirection = _camera.forward;
-            currentLookDirection.y = 0;
-
-            Quaternion targetRotation = Quaternion.LookRotation(currentLookDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _turningSpeed);
+            _verticalVelocity = -1f;
         }
+        else
+        {
+            _verticalVelocity -= Gravity * Time.deltaTime;
+        }
+
+        return _verticalVelocity;
     }
 
     private void InputManagement()
     {
-        _horizontalInput = Input.GetAxis("Horizontal");
-        _verticalInput = Input.GetAxis("Vertical");
+        HorizontalInput = Input.GetAxis("Horizontal");
+        VerticalInput = Input.GetAxis("Vertical");
+    }
+
+    private void CameraRotation()
+    {
+        Vector2 _mouseInput = new Vector2
+        {
+            x = Input.GetAxis("Mouse X"),
+            y = Input.GetAxis("Mouse Y")
+        };
+
+        XYRotation.x -= _mouseInput.y * Sensitivity.y;
+        XYRotation.y += _mouseInput.x * Sensitivity.x;
+
+        XYRotation.x = Mathf.Clamp(XYRotation.x, -Degree, Degree);
+
+        transform.eulerAngles = new Vector3(0f, XYRotation.y, 0f);
+        PlayerCamera.localEulerAngles = new Vector3(XYRotation.x, 0f, 0f);
     }
 }
