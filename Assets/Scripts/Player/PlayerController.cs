@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [Space(5)]
     [Header("Movement Settings")]
     [SerializeField] private float Speed = 5f;
-    [SerializeField] private float TurningSpeed = 2f;
     [SerializeField] private float Gravity = 9.81f;
 
     private float _verticalVelocity;

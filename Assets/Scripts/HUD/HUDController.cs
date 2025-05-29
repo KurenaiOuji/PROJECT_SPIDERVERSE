@@ -18,7 +18,7 @@ public class HUDController : MonoBehaviour
 
     public void EnableInteractionText(string text)
     {
-        InteractionText.text = text + (" (E)");
+        InteractionText.text = text + (" [F]");
         InteractionText.enabled = true;
     }
 
