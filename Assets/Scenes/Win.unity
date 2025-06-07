@@ -512,9 +512,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Development\r\nProject manager & Developer - Shika Moriyama\r\nLogical
     structurer - Fernando Horta\r\nFrontend UI - Greys\r\n\n\nArt\r\nSebasti\xE1n
-    Oropeza\r\nLuis Leonaldo\r\n\r\nEnvironment design - Shika Moriyama\r\n\n\nMusic\r\nSergio
-    Alberto Perea Villegas\r\nSidney Dominick Bravo Guzm\xE1n\r\nAlan Javier Nieto
-    Arceo\r\nI\xF1aki Peralta Cravioto\r\n\n\n\n\n\n"
+    Oropeza\r\nLuis Leonaldo\r\n\rSergio Arturo Ortiz\n\nEnvironment design - Shika
+    Moriyama\r\n\n\nMusic\r\nSergio Alberto Perea Villegas\r\nSidney Dominick Bravo
+    Guzm\xE1n\r\nAlan Javier Nieto Arceo\r\nI\xF1aki Peralta Cravioto\r\n\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
-  delay: 72
+  delay: 75
 --- !u!1 &1294731129
 GameObject:
   m_ObjectHideFlags: 0
