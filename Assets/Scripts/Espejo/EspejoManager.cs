@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.Rendering.Universal;
 
 public class EspejoManager : MonoBehaviour
 {
@@ -8,17 +9,20 @@ public class EspejoManager : MonoBehaviour
     [Header("References")]
     [Tooltip("Camara que muestra el Layer")]
     public Camera LayerCamera;
-    public GameObject mirror;
+    public Canvas mirrorTexture;
 
     private int[] layerMask = new int[] { 129, 65, 257 };
     private int currentIndex = 1;
 
-    private bool mirrorOn = false;
+    public bool mirrorOn = false;
+
+    private UniversalAdditionalCameraData cameraData;
 
     //64 Present, 65 Present/Default, 128 Past, 129 Past/Default, 256 Future, 257 Future/Default
     void Start()
     {
         LayerCamera.cullingMask = (65);
+        cameraData = LayerCamera.GetComponent<UniversalAdditionalCameraData>();
     }
 
     void Update()
@@ -30,16 +34,10 @@ public class EspejoManager : MonoBehaviour
 
     void Showmirror()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && mirrorOn)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            mirror.SetActive(false);
-            mirrorOn = false;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Q) && !mirrorOn)
-        {
-            mirror.SetActive(true);
-            mirrorOn = true;
+            mirrorOn = !mirrorOn;
+            mirrorTexture.enabled = mirrorOn;
         }
     }
 
@@ -49,12 +47,14 @@ public class EspejoManager : MonoBehaviour
         {
             currentIndex = Mathf.Max(0, currentIndex - 1);
             LayerCamera.cullingMask = layerMask[currentIndex];
+            cameraData.SetRenderer(currentIndex);
         }
 
         if (Input.GetKeyDown(KeyCode.X) && mirrorOn)
         {
             currentIndex = Mathf.Min(layerMask.Length - 1, currentIndex + 1);
             LayerCamera.cullingMask = layerMask[currentIndex];
+            cameraData.SetRenderer(currentIndex);
         }
     }
 
