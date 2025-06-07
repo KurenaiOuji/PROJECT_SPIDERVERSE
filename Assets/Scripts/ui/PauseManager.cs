@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class PauseManager : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public AudioSource openPauseSound;
+    public AudioSource closePauseSound;
+
     private bool isPaused = false;
 
     void Update()
@@ -24,6 +28,9 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        if (openPauseSound != null)
+            openPauseSound.Play();
     }
 
     void Resume()
@@ -33,6 +40,8 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (closePauseSound != null)
+            closePauseSound.Play();
     }
 }
-
