@@ -512,9 +512,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Development\r\nProject manager & Developer - Shika Moriyama\r\nLogical
     structurer - Fernando Horta\r\nFrontend UI - Greys\r\n\n\nArt\r\nSebasti\xE1n
-    Oropeza\r\nLuis Leonaldo\r\n\rSergio Arturo Ortiz\n\nEnvironment design - Shika
-    Moriyama\r\n\n\nMusic\r\nSergio Alberto Perea Villegas\r\nSidney Dominick Bravo
-    Guzm\xE1n\r\nAlan Javier Nieto Arceo\r\nI\xF1aki Peralta Cravioto\r\n\n\n\n\n\n"
+    Oropeza\r\nLuis Leonaldo\r \xC1vila\n\rSergio Arturo Ortiz\nAnyer Melina\nEnvironment
+    design - Shika Moriyama\r\n\n\nMusic\r\nSergio Alberto Perea Villegas\r\nSidney
+    Dominick Bravo Guzm\xE1n\r\nAlan Javier Nieto Arceo\r\nI\xF1aki Peralta Cravioto\r\n\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -1360,9 +1360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You escaped
-
-    Congratulations...'
+  m_text: You escaped...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
