@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PauseManager : MonoBehaviour
 {
+    public static Action OnPauseGame;
+
     public Canvas pauseMenuUI;
     public AudioSource openPauseSound;
     public AudioSource closePauseSound;
@@ -27,5 +30,7 @@ public class PauseManager : MonoBehaviour
 
         if (isPaused) openPauseSound.Play();
         else closePauseSound.Play();
+
+        OnPauseGame?.Invoke();
     }
 }

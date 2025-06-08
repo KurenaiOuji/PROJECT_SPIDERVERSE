@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -29,6 +32,25 @@ public class PlayerController : MonoBehaviour
     private float HorizontalInput;
     private float VerticalInput;
 
+    bool state = true;
+    GameState currentState;
+
+    enum GameState
+    {
+        PlayState,
+        PauseState
+    }
+
+    private void OnEnable()
+    {
+        PauseManager.OnPauseGame += ChangeState;
+    }
+
+    private void OnDisable()
+    {
+        PauseManager.OnPauseGame -= ChangeState;
+    }
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -44,8 +66,11 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        GroundMovement();
-        CameraRotation();
+        if (currentState == GameState.PlayState)
+        {
+            GroundMovement();
+            CameraRotation();
+        }
     }
 
     private void GroundMovement()
@@ -95,5 +120,11 @@ public class PlayerController : MonoBehaviour
 
         transform.eulerAngles = new Vector3(0f, XYRotation.y, 0f);
         PlayerCamera.localEulerAngles = new Vector3(XYRotation.x, 0f, 0f);
+    }
+
+    void ChangeState()
+    {
+        state = !state;
+        currentState = state ? GameState.PlayState : GameState.PauseState;
     }
 }
