@@ -23,6 +23,7 @@ public class EspejoManager : MonoBehaviour
     {
         LayerCamera.cullingMask = (65);
         cameraData = LayerCamera.GetComponent<UniversalAdditionalCameraData>();
+        cameraData.SetRenderer(1);
     }
 
     void Update()

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseManager : MonoBehaviour
 {
-    public GameObject pauseMenuUI;
+    public Canvas pauseMenuUI;
     public AudioSource openPauseSound;
     public AudioSource closePauseSound;
 
@@ -14,34 +12,20 @@ public class PauseManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
-                Resume();
-            else
-                Pause();
+            PauseGame();
         }
     }
 
-    void Pause()
+
+    void PauseGame()
     {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        isPaused = !isPaused;
+        pauseMenuUI.enabled = isPaused ? true : false;
+        Time.timeScale = isPaused ? 0f : 1f;
+        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isPaused ? true : false;
 
-        if (openPauseSound != null)
-            openPauseSound.Play();
-    }
-
-    void Resume()
-    {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        if (closePauseSound != null)
-            closePauseSound.Play();
+        if (isPaused) openPauseSound.Play();
+        else closePauseSound.Play();
     }
 }
